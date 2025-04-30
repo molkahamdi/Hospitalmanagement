@@ -1,0 +1,20 @@
+<nav class="navbar">
+  <div class="navbar-left">
+    <a routerLink="/">Bienvenue dans notre site</a>
+  </div>
+
+  <div class="navbar-right">
+    <span *ngIf="role === 'doctor'" class="nav-link">
+  Hello Doctor <span class="text-success fw-bold">{{ nom }}</span>
+    </span>
+    <span *ngIf="role === 'patient'" class="nav-link">
+  Hello Patient <span class="text-success fw-bold">{{ nom }}</span>
+</span>
+    <a *ngIf="!isLoggedIn" routerLink="/login">Se connecter</a>
+    <a *ngIf="!isLoggedIn" routerLink="/register">S'inscrire</a>
+
+    <a *ngIf="isLoggedIn && (role === 'doctor' || role === 'patient')" routerLink="/calendar" class="nav-link me-2">Calendrier</a>
+
+    <a *ngIf="isLoggedIn" (click)="logout()" class="nav-link">Déconnexion</a>
+  </div>
+</nav>

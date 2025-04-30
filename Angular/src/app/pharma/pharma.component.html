@@ -1,0 +1,69 @@
+<div class="pharma-container">
+    <!-- Header avec recherche -->
+    <header class="pharma-header">
+      <div class="logo">
+        <img src="assets/images/logo.jpg" alt="Logo Pharmacie">
+        <h1>Pharmacie du Centre Hospitalier</h1>
+      </div>
+      <div class="search-bar">
+        <input type="text" placeholder="Rechercher un médicament...">
+        <button class="search-btn">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+      <div class="user-actions">
+        <button class="alert-btn">
+          <i class="fas fa-bell"></i>
+          <span class="alert-count">3</span>
+        </button>
+        <div class="user-profile">
+          <img src="assets/user-avatar.png" alt="Profil">
+        </div>
+      </div>
+    </header>
+  
+    <!-- Container principal -->
+    <div class="main-content">
+      <!-- Sidebar -->
+      <nav class="pharma-sidebar">
+        <div class="sidebar-header">
+          <h3>Menu Pharmacie</h3>
+        </div>
+        <ul>
+          <li [class.active]="router.url.includes('medicament')">
+            <a routerLink="medicament">
+              <i class="fas fa-pills"></i>
+              <span>Médicaments</span>
+            </a>
+          </li>
+          <li [class.active]="router.url.includes('ordonnances')">
+            <a routerLink="ordonnances">
+              <i class="fas fa-prescription"></i>
+              <span>Ordonnances</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fas fa-chart-line"></i>
+              <span>Statistiques</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fas fa-cogs"></i>
+              <span>Paramètres</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+  
+      <!-- Zone de contenu -->
+      <div class="content-area">
+        <router-outlet></router-outlet>
+        
+        @if (!isRouteActive()) {
+          <app-medicament></app-medicament>
+        }
+      </div>
+    </div>
+  </div>

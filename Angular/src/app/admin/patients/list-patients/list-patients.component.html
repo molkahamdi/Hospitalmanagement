@@ -1,0 +1,43 @@
+<!-- FILE: list-patients.component.html -->
+<div class="container mt-4">
+
+
+  <!-- 📦 CARD VIEW BELOW TABLE -->
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-4">
+    <div class="col" *ngFor="let patient of patients">
+      <mat-card class="custom-card mat-elevation-z3">
+        <mat-card-header>
+
+          <mat-card-title>{{ patient.nom }}</mat-card-title>
+          <mat-card-subtitle>{{ patient.telephone }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p><strong>Adresse:</strong> {{ patient.adresse }}</p>
+          <p><strong>Email:</strong> {{ patient.email }}</p>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <button mat-button color="primary" [routerLink]="['/view-patient', patient._id]">
+            <mat-icon>visibility</mat-icon> Voir
+          </button>
+          <button mat-button color="orange" [routerLink]="['/update-patient', patient._id]">
+            <mat-icon>edit</mat-icon> Modifier
+          </button>
+          <button mat-button color="warn" (click)="delete(patient._id)">
+            <mat-icon>delete</mat-icon> Supprimer
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+
+
+
+
+  <p *ngIf="patients.length === 0" class="text-muted">Aucun patient trouvé.</p>
+</div>
+
+
+

@@ -1,0 +1,67 @@
+.register-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #4e73df, #6f42c1); /* Nouveau gradient */
+}
+
+.register-card {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.register-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2d3748; /* Couleur plus douce */
+}
+
+.register-card input,
+.register-card select {
+  padding: 12px;
+  border: 1px solid #ddd; /* Couleur de bordure plus douce */
+  border-radius: 10px;
+  font-size: 16px;
+  width: 100%; /* S'assurer que les champs sont égaux en largeur */
+  box-sizing: border-box; /* Inclure le padding dans la taille */
+}
+
+.register-card button {
+  background: #ff6f61; /* Couleur du bouton plus attrayante */
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%; /* Bouton en pleine largeur */
+  font-size: 16px; /* Ajustement de la taille pour l'uniformité */
+}
+
+.register-card button:hover {
+  background-color: #e04e4b; /* Couleur de survol plus foncée */
+}
+
+.footer-text {
+  text-align: center;
+  font-size: 14px;
+  color: #4a5568; /* Couleur de texte légèrement plus douce */
+}
+
+.footer-text a {
+  color: #ffa500; /* Couleur orange plus vive */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.footer-text a:hover {
+  color: #e67e22; /* Couleur survol dynamique */
+}

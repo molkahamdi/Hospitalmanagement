@@ -1,0 +1,100 @@
+/* Conteneur principal */
+.urgence-container {
+  padding: 30px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+/* Titre principal */
+.urgence-header {
+  font-size: 2.5rem;
+  color: #e74c3c;
+  margin-bottom: 20px;
+}
+
+/* Description */
+.urgence-description {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+/* Icônes urgentes */
+.urgence-icons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.urgence-icon i {
+  color: #e74c3c;
+}
+
+.urgence-icon p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* Conseils d'urgence */
+.urgence-tips {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.urgence-tips ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.urgence-tips li {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.urgence-tips strong {
+  color: #e74c3c;
+}
+
+/* Catégories d'urgences */
+.urgence-categories {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+
+.urgence-category {
+  width: 30%;
+  text-align: center;
+}
+
+.urgence-category h4 {
+  color: #e74c3c;
+}
+
+.urgence-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Carte Google Maps */
+.map-section {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+/* Informations de contact */
+.urgence-contact {
+  margin-top: 30px;
+}
+
+.urgence-contact i {
+  margin-right: 10px;
+}

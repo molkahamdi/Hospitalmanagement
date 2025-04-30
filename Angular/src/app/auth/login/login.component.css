@@ -1,0 +1,66 @@
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #4e73df, #6f42c1); /* Same gradient as register */
+}
+
+.login-card {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2d3748; /* Soft headline color */
+}
+
+.login-card input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.login-card button {
+  background: #4caf50; /* Nice green for login */
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+}
+
+.login-card button:hover {
+  background-color: #388e3c; /* Darker on hover */
+}
+
+.footer-text {
+  text-align: center;
+  font-size: 14px;
+  color: #4a5568;
+}
+
+.footer-text a {
+  color: #ffa500;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.footer-text a:hover {
+  color: #e67e22;
+}

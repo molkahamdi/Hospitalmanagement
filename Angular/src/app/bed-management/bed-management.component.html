@@ -1,0 +1,73 @@
+<div class="bed-management-container">
+    <h2>Gestion des Lits Hospitaliers</h2>
+  
+    <div class="controls">
+      <mat-form-field>
+        <mat-label>Filtrer par service</mat-label>
+        <mat-select [(ngModel)]="selectedDepartment">
+          <mat-option *ngFor="let dept of departments" [value]="dept">
+            {{ dept }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+    <div class="content-wrapper">
+      <div class="bed-grid">
+        <mat-card *ngFor="let bed of filteredBeds" 
+                  [class]="'bed-card ' + bed.status"
+                  (click)="selectBed(bed)">
+          
+          <div class="bed-header">
+            <span class="room-number">{{ bed.roomNumber }}</span>
+            <span class="department">{{ bed.department }}</span>
+          </div>
+  
+          <div class="bed-status">
+            <mat-icon [class]="bed.status">
+              {{ bed.status === 'occupied' ? 'person' : bed.status === 'available' ? 'bed' : 'build' }}
+            </mat-icon>
+            <span>{{ getStatusText(bed.status) }}</span>
+          </div>
+  
+          <div *ngIf="bed.status === 'occupied'" class="patient-info">
+            {{ bed.patientName }}
+          </div>
+  
+          <button *ngIf="bed.status === 'available'" 
+                  mat-flat-button 
+                  color="primary"
+                  (click)="assignPatient(bed); $event.stopPropagation()">
+            Affecter
+          </button>
+        </mat-card>
+      </div>
+  
+      <div *ngIf="selectedBed" class="bed-details">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Lit {{ selectedBed.roomNumber }}</mat-card-title>
+            <mat-card-subtitle>{{ selectedBed.department }}</mat-card-subtitle>
+          </mat-card-header>
+  
+          <mat-card-content>
+            <p><strong>Statut:</strong> {{ getStatusText(selectedBed.status) }}</p>
+            <p *ngIf="selectedBed.patientName"><strong>Patient:</strong> {{ selectedBed.patientName }}</p>
+          </mat-card-content>
+  
+          <mat-card-actions>
+            <button mat-button color="warn" 
+                    *ngIf="selectedBed.status === 'occupied'"
+                    (click)="selectedBed.status = 'available'; selectedBed.patientName = undefined">
+              Libérer le lit
+            </button>
+            <button mat-button 
+                    *ngIf="selectedBed.status === 'maintenance'"
+                    (click)="selectedBed.status = 'available'">
+              Marquer comme disponible
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,130 @@
+<div class="facturation-container">
+    <h2>
+      <mat-icon>receipt_long</mat-icon>
+      Gestion des Factures
+    </h2>
+  
+    <div class="controls">
+      <mat-form-field appearance="outline">
+        <mat-label>Rechercher</mat-label>
+        <input matInput [(ngModel)]="searchQuery" placeholder="ID ou patient">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Statut</mat-label>
+        <mat-select [(ngModel)]="selectedStatut">
+          <mat-option value="tous">Tous</mat-option>
+          <mat-option value="payée">Payées</mat-option>
+          <mat-option value="impayée">Impayées</mat-option>
+          <mat-option value="remboursée">Remboursées</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+    <div class="content-wrapper">
+      <div class="table-container">
+        <table mat-table [dataSource]="filteredFactures">
+          <!-- Colonne ID -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>N° Facture</th>
+            <td mat-cell *matCellDef="let row">{{row.id}}</td>
+          </ng-container>
+  
+          <!-- Colonne Patient -->
+          <ng-container matColumnDef="patient">
+            <th mat-header-cell *matHeaderCellDef>Patient</th>
+            <td mat-cell *matCellDef="let row">{{row.patient}}</td>
+          </ng-container>
+  
+          <!-- Colonne Date -->
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>Date</th>
+            <td mat-cell *matCellDef="let row">{{row.date | date:'dd/MM/yyyy'}}</td>
+          </ng-container>
+  
+          <!-- Colonne Montant -->
+          <ng-container matColumnDef="montant">
+            <th mat-header-cell *matHeaderCellDef>Montant</th>
+            <td mat-cell *matCellDef="let row">{{row.montant}} €</td>
+          </ng-container>
+  
+          <!-- Colonne Statut -->
+          <ng-container matColumnDef="statut">
+            <th mat-header-cell *matHeaderCellDef>Statut</th>
+            <td mat-cell *matCellDef="let row">
+              <span class="statut-badge" [class]="row.statut">
+                {{row.statut | uppercase}}
+              </span>
+            </td>
+          </ng-container>
+  
+          <!-- Colonne Actions -->
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let row">
+              <button mat-icon-button (click)="showDetails(row)" matTooltip="Détails">
+                <mat-icon>visibility</mat-icon>
+              </button>
+              <button mat-icon-button (click)="imprimerFacture(row)" matTooltip="Imprimer">
+                <mat-icon>print</mat-icon>
+              </button>
+              <button mat-icon-button *ngIf="row.statut === 'impayée'" 
+                      (click)="payerFacture(row)" color="primary" matTooltip="Payer">
+                <mat-icon>euro</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+              [class.selected]="selectedFacture?.id === row.id"
+              (click)="showDetails(row)"></tr>
+        </table>
+      </div>
+  
+      <div class="details-container" *ngIf="selectedFacture">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Détails Facture {{selectedFacture.id}}</mat-card-title>
+            <mat-card-subtitle>
+              <span class="statut-badge" [class]="selectedFacture.statut">
+                {{selectedFacture.statut | uppercase}}
+              </span>
+            </mat-card-subtitle>
+          </mat-card-header>
+  
+          <mat-card-content>
+            <div class="detail-row">
+              <span class="label">Patient :</span>
+              <span class="value">{{selectedFacture.patient}}</span>
+            </div>
+            <div class="detail-row">
+              <span class="label">Date :</span>
+              <span class="value">{{selectedFacture.date | date:'dd/MM/yyyy'}}</span>
+            </div>
+            <div class="detail-row">
+              <span class="label">Type :</span>
+              <span class="value">{{selectedFacture.type | uppercase}}</span>
+            </div>
+            <div class="detail-row total">
+              <span class="label">Montant :</span>
+              <span class="value">{{selectedFacture.montant}} €</span>
+            </div>
+          </mat-card-content>
+  
+          <mat-card-actions>
+            <button mat-stroked-button (click)="imprimerFacture(selectedFacture)">
+              <mat-icon>print</mat-icon>
+              IMPRIMER
+            </button>
+            <button mat-raised-button color="primary" *ngIf="selectedFacture.statut === 'impayée'"
+                    (click)="payerFacture(selectedFacture)">
+              <mat-icon>euro</mat-icon>
+              MARQUER COMME PAYÉE
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>

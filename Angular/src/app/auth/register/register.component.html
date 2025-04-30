@@ -1,0 +1,33 @@
+<div class="register-container">
+  <form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="register-card">
+    <h2>Register</h2>
+
+    <input type="text" name="nom" [(ngModel)]="formData.nom" placeholder="Nom" required />
+    <input type="email" name="email" [(ngModel)]="formData.email" placeholder="Email" required />
+    <input type="password" name="password" [(ngModel)]="formData.password" placeholder="Mot de passe" required />
+
+    <select name="role" [(ngModel)]="formData.role" required>
+      <option value="" disabled selected>Choisir un rôle</option>
+      <option value="patient">Patient</option>
+      <option value="doctor">Docteur</option>
+      <option value="admin">Admin</option>
+    </select>
+
+    <!-- Champs conditionnels -->
+    <div *ngIf="formData.role === 'patient'">
+      <input type="text" name="telephone" [(ngModel)]="formData.telephone" placeholder="Téléphone" />
+      <input type="text" name="adresse" [(ngModel)]="formData.adresse" placeholder="Adresse" />
+    </div>
+
+    <div *ngIf="formData.role === 'doctor'">
+      <input type="text" name="specialite" [(ngModel)]="formData.specialite" placeholder="Spécialité" />
+      <input type="number" name="tarif" [(ngModel)]="formData.tarif" placeholder="Tarif" />
+    </div>
+
+    <button type="submit">S'inscrire</button>
+
+    <p class="footer-text">
+      Déjà inscrit ? <a [routerLink]="'/login'">se connecter</a>
+    </p>
+  </form>
+</div>x
