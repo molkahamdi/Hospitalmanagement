@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import {jwtDecode} from 'jwt-decode';
 
 @Component({
   selector: 'app-ordonnance',
@@ -21,9 +22,9 @@ export class OrdonnanceComponent implements OnInit {
   medicaments: { nom: string; posologie: string }[] = [];
   nouveauMedicament = { nom: '', posologie: '' };
   today = new Date();
+  private router: any;
 
   ngOnInit() {
-    // Charger une ordonnance existante si ID présent dans l'URL (édition)
     const ordonnanceId = window.location.search.split('id=')[1];
     if (ordonnanceId) {
       const ordonnances = JSON.parse(localStorage.getItem('ordonnances') || '[]');
@@ -32,6 +33,15 @@ export class OrdonnanceComponent implements OnInit {
         this.patient = ordonnance.patient;
         this.medicaments = ordonnance.medicaments;
       }
+    }
+    const token = localStorage.getItem('token');
+    if (token) {
+      const role = (jwtDecode(token) as any).role;
+      if (role !== 'doctor') {
+        this.router.navigate(['/']);
+      }
+    } else {
+      this.router.navigate(['/login']);
     }
   }
 

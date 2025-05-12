@@ -47,12 +47,18 @@ export const routes: Routes = [
       {path: 'register' , component: RegisterComponent },
       {path: 'login' , component: LoginComponent },
       {path: 'urgence' , component: UrgenceComponent },
-      
+
 
       { path: 'ordo', redirectTo: '/ordonnance', pathMatch: 'full' },
-  { path: 'ordonnance', component: OrdonnanceComponent},
-  { path: 'liste-ordonnances', component: ListeOrdonnancesComponent},
-   { path: 'payment', component: PaymentComponent},
+      {
+        path: 'ordonnance',
+        loadComponent: () => import('./ordonnance/ordonnance.component').then(m => m.OrdonnanceComponent),
+        canActivate: [authGuard]
+      },
+      { path: 'liste-ordonnances', component: ListeOrdonnancesComponent},
+      { path: 'payment', component: PaymentComponent},
+
+
 
 ];
 

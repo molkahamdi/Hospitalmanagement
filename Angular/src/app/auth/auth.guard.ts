@@ -1,12 +1,11 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { jwtDecode } from 'jwt-decode'; // ✅ correct
-
+import { jwtDecode } from 'jwt-decode';
 
 export const authGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
-
   const token = localStorage.getItem('token');
+
   if (!token) {
     router.navigate(['/login']);
     return false;
@@ -15,24 +14,22 @@ export const authGuard: CanActivateFn = (route, state) => {
   try {
     const decoded: any = jwtDecode(token);
     const role = decoded.role;
+    const requestedUrl = state.url;
 
-    if (role === 'admin') {
-      return true; // ✅ Grant access to /admin
-    }
-
-    if (role === 'doctor') {
-      router.navigate(['/calendar']); // ⛔ Block /admin → go to /calendar
+    // ✅ Restrict /admin to admin only
+    if (requestedUrl.startsWith('/admin') && role !== 'admin') {
+      router.navigate(['/']);
       return false;
     }
 
-    if (role === 'patient') {
-      router.navigate(['/home']); // ⛔ Block /admin → go to /home
+    // ✅ Restrict /ordo to doctor only
+    if (requestedUrl.startsWith('/ordo') && role !== 'doctor') {
+      router.navigate(['/']);
       return false;
     }
 
-    // Default fallback
-    router.navigate(['/login']);
-    return false;
+    // Allow access
+    return true;
 
   } catch (e) {
     console.error('Token decoding error:', e);
