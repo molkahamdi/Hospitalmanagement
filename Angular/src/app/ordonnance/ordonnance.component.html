@@ -1,0 +1,133 @@
+<div class="ordonnance-container">
+  <!-- En-tête -->
+  <header class="ordonnance-header">
+    <div class="logo">
+      <img src="assets/images/logo.avif" alt="Clinic Logo" />
+    </div>
+    <div class="header-info">
+      <h1>Ordonnance Médicale</h1>
+      <p>Dr...</p>
+      <p>123 Rue de la Santé, 7500 tunis</p>
+      <p>Tél: +216 23 416 020</p>
+    </div>
+  </header>
+
+  <!-- Formulaire Patient -->
+  <section class="patient-info">
+    <h2>Informations du Patient</h2>
+    <form class="info-grid">
+      <div class="form-group">
+        <label for="nom">Nom</label>
+        <input
+          type="text"
+          id="nom"
+          [(ngModel)]="patient.nom"
+          name="nom"
+          placeholder="Nom"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="prenom">Prénom</label>
+        <input
+          type="text"
+          id="prenom"
+          [(ngModel)]="patient.prenom"
+          name="prenom"
+          placeholder="Prénom"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="dateNaissance">Date de naissance</label>
+        <input
+          type="date"
+          id="dateNaissance"
+          [(ngModel)]="patient.dateNaissance"
+          name="dateNaissance"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="adresse">Adresse</label>
+        <input
+          type="text"
+          id="adresse"
+          [(ngModel)]="patient.adresse"
+          name="adresse"
+          placeholder="Adresse"
+          required
+        />
+      </div>
+    </form>
+  </section>
+
+  <!-- Prescription -->
+  <section class="prescription">
+    <h2>Prescription</h2>
+    <form (ngSubmit)="ajouterMedicament()">
+      <div class="form-group">
+        <label for="medicament">Médicament</label>
+        <input
+          type="text"
+          id="medicament"
+          [(ngModel)]="nouveauMedicament.nom"
+          name="medicament"
+          placeholder="Nom du médicament"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="posologie">Posologie</label>
+        <input
+          type="text"
+          id="posologie"
+          [(ngModel)]="nouveauMedicament.posologie"
+          name="posologie"
+          placeholder="Ex: 1 comprimé par jour"
+          required
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Ajouter Médicament</button>
+    </form>
+
+    <!-- Liste des médicaments -->
+    <table class="medicament-table" *ngIf="medicaments.length > 0">
+      <thead>
+        <tr>
+          <th>Médicament</th>
+          <th>Posologie</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let med of medicaments; let i = index">
+          <td>{{ med.nom }}</td>
+          <td>{{ med.posologie }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="supprimerMedicament(i)">
+              Supprimer
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Boutons d'action -->
+  <div class="action-buttons">
+    <button class="btn btn-primary" (click)="sauvegarderOrdonnance()">
+      Sauvegarder Ordonnance
+    </button>
+    <button class="btn btn-print" (click)="imprimerOrdonnance()">
+      Imprimer Ordonnance
+    </button>
+    <a class="btn btn-secondary" routerLink="/liste-ordonnances">Voir toutes les ordonnances</a>
+  </div>
+
+  <!-- Pied de page -->
+  <footer class="ordonnance-footer">
+    <p>Date: {{ today | date: 'dd/MM/yyyy' }}</p>
+    <p>Signature: ___________________________</p>
+  </footer>
+</div>

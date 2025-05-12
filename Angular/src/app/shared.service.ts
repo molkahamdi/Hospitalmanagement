@@ -1,35 +1,33 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
-
+  private url = 'http://localhost:7000/api'; 
 
   constructor(private http: HttpClient) { }
-  private url = 'http://localhost:7000/api';
 
-
-  // shared.service.ts
+  // Méthodes existantes
   addUser(data: any): Observable<any> {
     return this.http.post(`${this.url}/user/add`, data);
   }
-
+ 
   getAllUsers(): Observable<any[]> {
     return this.http.get<any[]>(`${this.url}/user/getAllUsers`);
   }
 
-  delete(id :any){
+  delete(id: any) {
     return this.http.delete(`${this.url}/user/delete/${id}`);
   }
 
-  updatePatient(id: any , patient :any){
+  updatePatient(id: any, patient: any) {
     return this.http.put(`${this.url}/user/update/${id}`, patient);
   }
 
-  getUserById(id :any){
+  getUserById(id: any) {
     return this.http.get(`${this.url}/user/getById/${id}`);
   }
 
@@ -37,8 +35,5 @@ export class SharedService {
     const payload = { to, subject, message };
     return this.http.post(`${this.url}/email/sendemail`, payload);
   }
-
-
-
 
 }

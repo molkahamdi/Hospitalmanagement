@@ -4,7 +4,7 @@ import { AdminComponent } from './admin/admin.component';
 import { PharmaComponent } from './pharma/pharma.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { BedManagementComponent } from './bed-management/bed-management.component';
-import { FacturationComponent } from './facturation/facturation.component';
+
 import {RegisterComponent} from './auth/register/register.component';
 import {LoginComponent} from './auth/login/login.component';
 import {authGuard} from './auth/auth.guard';
@@ -17,7 +17,9 @@ import {ListDoctorsComponent} from './admin/doctors/list-doctors/list-doctors.co
 import {UpdateDoctorComponent} from './admin/doctors/update-doctor/update-doctor.component';
 import {ViewPatientComponent} from './admin/patients/view-patient/view-patient.component';
 import {ViewDoctorComponent} from './admin/doctors/view-doctor/view-doctor.component';
-
+import { OrdonnanceComponent } from './ordonnance/ordonnance.component';
+import { ListeOrdonnancesComponent } from './liste-ordonnances/liste-ordonnances.component';
+import { PaymentComponent } from './payment/payment.component';
 
 export const routes: Routes = [
     { path:'', component:HomeComponent },
@@ -34,13 +36,6 @@ export const routes: Routes = [
   { path: 'list-doctors', component: ListDoctorsComponent },
   { path: 'update-doctor/:id', component: UpdateDoctorComponent },
   { path: 'view-doctor/:id', component: ViewDoctorComponent },
-
-
-
-
-
-
-
   { path: 'pharma', component: PharmaComponent,
         children: [
           { path: 'medicament', loadComponent: () => import('./pharma/medicament/medicament.component').then(m => m.MedicamentComponent) },
@@ -49,12 +44,15 @@ export const routes: Routes = [
       },
       { path: 'calendar', component: CalendarComponent},
       { path: 'Bed', component: BedManagementComponent},
-      { path: 'facturation', component: FacturationComponent},
       {path: 'register' , component: RegisterComponent },
       {path: 'login' , component: LoginComponent },
-      {path: 'urgence' , component: UrgenceComponent }
+      {path: 'urgence' , component: UrgenceComponent },
+      
 
-
+      { path: 'ordo', redirectTo: '/ordonnance', pathMatch: 'full' },
+  { path: 'ordonnance', component: OrdonnanceComponent},
+  { path: 'liste-ordonnances', component: ListeOrdonnancesComponent},
+   { path: 'payment', component: PaymentComponent},
 
 ];
 

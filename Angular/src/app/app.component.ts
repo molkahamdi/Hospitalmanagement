@@ -6,12 +6,10 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { AdminComponent } from './admin/admin.component';
 import { BedManagementComponent } from './bed-management/bed-management.component';
 
-
-
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,HomeComponent,HeaderComponent,FooterComponent,BedManagementComponent,AdminComponent],
+  imports: [RouterOutlet,HomeComponent,HeaderComponent,FooterComponent,BedManagementComponent,AdminComponent,],
   templateUrl: './app.component.html',
 
   styleUrl: './app.component.css'

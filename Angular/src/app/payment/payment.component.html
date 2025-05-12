@@ -1,0 +1,136 @@
+<div class="payment-container">
+  <!-- Logo -->
+  <img src="assets/images/logo.avif" alt="Clinic Logo" class="logo" />
+
+  <!-- Main Heading -->
+  <h1>Paiement de la visite</h1>
+
+  <!-- Payment Card -->
+  <div class="payment-card" *ngIf="!paymentSuccess">
+    <div class="card-header">
+      <span class="fa-icon fas fa-credit-card"></span>
+      <h2>Paiement de la visite</h2>
+    </div>
+    <div class="card-body">
+      <!-- Nom Input -->
+      <p class="input-group">
+        <strong>Nom :</strong>
+        <span class="input-icon"><i class="fas fa-user"></i></span>
+        <input
+          type="text"
+          [(ngModel)]="patient.nom"
+          placeholder="Entrez votre nom"
+          class="payment-input"
+          aria-label="Nom du patient"
+        />
+      </p>
+
+      <!-- Prénom Input -->
+      <p class="input-group">
+        <strong>Prénom :</strong>
+        <span class="input-icon"><i class="fas fa-user"></i></span>
+        <input
+          type="text"
+          [(ngModel)]="patient.prenom"
+          placeholder="Entrez votre prénom"
+          class="payment-input"
+          aria-label="Prénom du patient"
+        />
+      </p>
+
+      <!-- Date de visite Input -->
+      <p class="input-group">
+        <strong>Date de visite :</strong>
+        <span class="input-icon"><i class="fas fa-calendar-alt"></i></span>
+        <input
+          type="date"
+          [(ngModel)]="patient.dateVisite"
+          class="payment-input"
+          aria-label="Date de la visite"
+        />
+      </p>
+
+      <!-- Montant Input -->
+      <p class="input-group">
+        <strong>Montant :</strong>
+        <span class="input-icon"><i class="fas fa-money-bill"></i></span>
+        <input
+          type="number"
+          [(ngModel)]="patient.montant"
+          placeholder="Montant à payer"
+          class="payment-input"
+          aria-label="Montant à payer"
+        />
+      </p>
+
+      <!-- Generate Payment Code Button -->
+      <p>
+        <button
+          class="btn btn-secondary"
+          (click)="generatePaymentCode()"
+          aria-label="Générer un code de paiement"
+        >
+          <span class="fa-icon fas fa-key"></span> Générer un code de paiement
+        </button>
+      </p>
+
+      <!-- Generated Code Display -->
+      <p *ngIf="generatedCode">
+        <strong>Code de paiement :</strong> {{ generatedCode }}
+      </p>
+
+      <!-- Payment Code Input -->
+      <p class="input-group">
+        <strong>Code de paiement :</strong>
+        <span class="input-icon"><i class="fas fa-lock"></i></span>
+        <input
+          type="text"
+          [(ngModel)]="paymentCode"
+          placeholder="Entrez le code de paiement"
+          class="payment-input"
+          aria-label="Code de paiement"
+        />
+      </p>
+
+      <!-- Pay Now Button -->
+      <button
+        class="btn btn-primary"
+        (click)="initiatePayment()"
+        [disabled]="loading"
+        aria-label="Effectuer le paiement"
+      >
+        <span class="fa-icon fas fa-wallet" *ngIf="!loading"></span>
+        <span class="spinner" *ngIf="loading"></span>
+        {{ loading ? "Paiement en cours..." : "Payer maintenant" }}
+      </button>
+
+      
+    </div>
+  </div>
+
+  <!-- Error Message -->
+  <p *ngIf="paymentError" class="error">{{ paymentError }}</p>
+
+  <!-- Receipt Section -->
+  <div class="receipt" *ngIf="paymentSuccess">
+    <div class="receipt-header">
+      <i class="fas fa-check-circle"></i>
+      <h2>Reçu de paiement</h2>
+    </div>
+    <div class="receipt-card">
+      <p><strong>Transaction ID :</strong> {{ paymentIntentId }}</p>
+      <p><strong>Nom :</strong> {{ patient.nom }}</p>
+      <p><strong>Prénom :</strong> {{ patient.prenom }}</p>
+      <p><strong>Montant :</strong> {{ patient.montant }} TND</p>
+      <p><strong>Date de visite :</strong> {{ patient.dateVisite }}</p>
+      <p><strong>Statut :</strong> Payé</p>
+      <button
+        class="btn btn-secondary"
+        (click)="printReceipt()"
+        aria-label="Imprimer le reçu"
+      >
+        <span class="fa-icon fas fa-print"></span> Imprimer le reçu
+      </button>
+    </div>
+  </div>
+</div>

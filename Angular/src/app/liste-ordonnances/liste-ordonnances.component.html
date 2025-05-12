@@ -1,0 +1,33 @@
+<div class="liste-ordonnances-container">
+  <h1>Liste des Ordonnances</h1>
+  <div class="ordonnance-grid">
+    <div
+      class="ordonnance-card"
+      *ngFor="let ordonnance of ordonnances"
+      (click)="voirOrdonnance(ordonnance.id)"
+    >
+      <div class="card-header">
+        <h2>{{ ordonnance.patient.nom }} {{ ordonnance.patient.prenom }}</h2>
+        <span class="date">{{
+          ordonnance.date | date: 'dd/MM/yyyy'
+        }}</span>
+      </div>
+      <div class="card-body">
+        <p><strong>Adresse:</strong> {{ ordonnance.patient.adresse }}</p>
+        <p><strong>Médicaments:</strong> {{ ordonnance.medicaments.length }}</p>
+      </div>
+      <div class="card-actions">
+        <button
+          class="btn btn-danger"
+          (click)="supprimerOrdonnance(ordonnance.id); $event.stopPropagation()"
+        >
+          Supprimer
+        </button>
+        <a class="btn btn-primary" [routerLink]="['/ordonnance']" [queryParams]="{ id: ordonnance.id }">
+          Modifier
+        </a>
+      </div>
+    </div>
+  </div>
+  <a class="btn btn-primary" routerLink="/ordonnance">Créer une nouvelle ordonnance</a>
+</div>

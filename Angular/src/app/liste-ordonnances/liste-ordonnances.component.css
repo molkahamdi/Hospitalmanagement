@@ -1,0 +1,225 @@
+/* Importation de la police Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+/* Conteneur principal */
+.liste-ordonnances-container {
+  max-width: 1100px;
+  margin: 50px auto;
+  padding: 30px;
+  background: #ffffff; /* Blanc pur, comme ordonnance */
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  font-family: 'Poppins', sans-serif;
+  border: 1px solid #e0e7ff; /* Bordure subtile, comme ordonnance */
+  position: relative;
+
+  h1 {
+    text-align: center;
+    color: #1e3a8a; /* Bleu nuit, comme ordonnance */
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    /* Icône médicale */
+    &::before {
+      content: '\f21e'; /* Cœur médical FontAwesome */
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      color: #06b6d4; /* Cyan, comme ordonnance */
+      font-size: 24px;
+    }
+  }
+}
+
+/* Symbole médical en filigrane avec animation */
+.liste-ordonnances-container::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 30px;
+  transform: translateY(-50%);
+  width: 180px;
+  height: 180px;
+  background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="%2306b6d4" fill-opacity="0.8"/></svg>');
+  opacity: 0.25;
+  pointer-events: none;
+  animation: pulse 2.5s infinite ease-in-out; /* Pulsation plus rapide */
+}
+
+/* Animation de pulsation plus dynamique */
+@keyframes pulse {
+  0% {
+    transform: translateY(-50%) scale(1);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translateY(-50%) scale(1.1);
+    opacity: 0.35;
+  }
+  100% {
+    transform: translateY(-50%) scale(1);
+    opacity: 0.25;
+  }
+}
+
+/* Grille des ordonnances */
+.ordonnance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+/* Carte d'ordonnance */
+.ordonnance-card {
+  background: #f8fafc; /* Gris clair, comme ordonnance */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  border: 1px solid #e0e7ff; /* Bordure subtile, comme ordonnance */
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    background: #ffffff; /* Transition vers blanc au survol */
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e0e7ff; /* Bordure, comme ordonnance */
+
+    h2 {
+      font-size: 18px;
+      margin: 0;
+      color: #1e3a8a; /* Bleu nuit */
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      &::before {
+        content: '\f007'; /* Icône utilisateur */
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        color: #06b6d4; /* Cyan */
+        font-size: 16px;
+      }
+    }
+
+    .date {
+      font-size: 13px;
+      color: #64748b; /* Gris bleu, comme ordonnance */
+      font-weight: 400;
+    }
+  }
+
+  .card-body {
+    padding: 15px 0;
+
+    p {
+      margin: 10px 0;
+      color: #334155; /* Gris foncé, comme ordonnance */
+      font-size: 14px;
+
+      strong {
+        color: #1e3a8a;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .card-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+
+    .btn {
+      padding: 8px 12px; /* Aligné avec ordonnance */
+      border: none;
+      border-radius: 6px; /* Comme ordonnance */
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      &:hover {
+        transform: scale(1.05); /* Effet rebond pour plus de dynamisme */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      &.btn-primary {
+        background: #1e3a8a; /* Bleu nuit, comme ordonnance */
+        color: #ffffff;
+
+        &::before {
+          content: '\f044'; /* Icône modifier */
+          font-family: 'Font Awesome 5 Free';
+          font-weight: 900;
+        }
+
+        &:hover {
+          background: #172554;
+        }
+      }
+
+      &.btn-danger {
+        background: #4466ef; 
+        color: #ffffff;
+
+        &::before {
+          content: '\f2ed'; 
+          font-family: 'Font Awesome 5 Free';
+          font-weight: 900;
+        }
+
+        &:hover {
+          background: #2635dc; 
+        }
+      }
+    }
+  }
+}
+
+/* Bouton "Créer une nouvelle ordonnance" */
+.btn-primary {
+  display: block;
+  width: fit-content;
+  margin: 40px auto;
+  padding: 12px 24px;
+  background: #06b6d4; /* Cyan, comme bouton imprimer dans ordonnance */
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 6px; /* Comme ordonnance */
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+
+  &::before {
+    content: '\f067'; /* Icône plus */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+  }
+
+  &:hover {
+    background: #0891b2;
+    transform: scale(1.05); /* Effet rebond */
+    box-shadow: 0 8px 20px rgba(6, 182, 212, 0.4);
+  }
+}

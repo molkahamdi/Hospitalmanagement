@@ -1,60 +1,79 @@
-
 <div class="urgence-container">
-  <!-- Titre Principal -->
-  <h2 class="urgence-header">Urgences Médicales</h2>
+  <!-- Header Section -->
+  <header class="urgence-header">
+    <img src="assets/images/logo.avif" alt="Hospital Logo" class="logo" />
+    <h1>Urgences Médicales</h1>
+    <p class="urgence-description">
+      En cas d'urgence, agissez rapidement. Nos services sont là pour vous guider et vous aider à chaque étape.
+    </p>
+  </header>
 
-  <!-- Description de l'importance d'agir rapidement -->
-  <p class="urgence-description">
-    En cas d'urgence, il est essentiel de réagir vite. Voici quelques conseils pour vous aider à prendre la bonne décision rapidement.
-  </p>
-
-  <!-- Section avec des icônes et images médicales -->
+  <!-- Icon Grid -->
   <div class="urgence-icons">
     <div class="urgence-icon">
-      <i class="fas fa-ambulance fa-3x"></i>
-      <p>Appelez une ambulance en cas d'urgence sévère</p>
+      <i class="fas fa-ambulance"></i>
+      <h3>Appel d’Urgence</h3>
+      <p>Appelez immédiatement une ambulance pour les situations critiques.</p>
     </div>
     <div class="urgence-icon">
-      <i class="fas fa-heartbeat fa-3x"></i>
-      <p>Consultez pour des douleurs thoraciques ou un malaise cardiaque</p>
+      <i class="fas fa-heartbeat"></i>
+      <h3>Problèmes Cardiaques</h3>
+      <p>Consultez pour toute douleur thoracique ou malaise cardiaque.</p>
     </div>
     <div class="urgence-icon">
-      <i class="fas fa-prescription-bottle-alt fa-3x"></i>
-      <p>Ne laissez jamais un accident grave sans traitement</p>
+      <i class="fas fa-prescription-bottle-alt"></i>
+      <h3>Accidents Graves</h3>
+      <p>Ne laissez pas un accident grave sans traitement immédiat.</p>
     </div>
   </div>
 
-  <!-- Conseils d'urgence médicale -->
-  <div class="urgence-tips">
-    <h3>Conseils pour les urgences</h3>
+  <!-- Emergency Tips -->
+  <section class="urgence-tips">
+    <h2>Conseils en Cas d’Urgence</h2>
     <ul>
-      <li><strong>Respiration difficile :</strong> Respirez profondément et restez calme. Si nécessaire, appelez les secours.</li>
-      <li><strong>Choc ou évanouissement :</strong> Allongez la personne sur le dos et surélevez ses jambes, appelez les secours immédiatement.</li>
-      <li><strong>Brûlures :</strong> Rafraîchissez la brûlure avec de l'eau froide pendant 10 à 15 minutes, puis consultez un médecin.</li>
+      <li>
+        <strong>Respiration difficile :</strong> Restez calme, respirez lentement et appelez les secours si nécessaire.
+      </li>
+      <li>
+        <strong>Choc ou évanouissement :</strong> Allongez la personne, surélevez ses jambes et contactez les urgences.
+      </li>
+      <li>
+        <strong>Brûlures :</strong> Refroidissez la brûlure à l’eau froide (10-15 min) et consultez un médecin.
+      </li>
     </ul>
-  </div>
+  </section>
 
-  <!-- Section des urgences spécifiques -->
-  <div class="urgence-categories">
-    <h3>Urgences Spécifiques</h3>
-    <div class="urgence-category">
-      <img src="assets/images/cardiologie.jpg" alt="Urgence Cardiologie" class="urgence-image">
-      <h4>Cardiologie</h4>
-      <p>En cas de douleur thoracique ou de malaise cardiaque, consultez immédiatement un cardiologue d'urgence.</p>
+  <!-- Specific Emergencies -->
+  <section class="urgence-categories">
+    <h2>Urgences Spécialisées</h2>
+    <div class="category-grid">
+      <div class="urgence-category">
+        <img src="assets/images/cardiologie.jpeg" alt="Urgence Cardiologie" class="urgence-image" />
+        <div class="category-content">
+          <h3>Cardiologie</h3>
+          <p>Douleurs thoraciques ou malaises cardiaques nécessitent une consultation immédiate.</p>
+        </div>
+      </div>
+      <div class="urgence-category">
+        <img src="assets/images/neurologie.jpeg" alt="Urgence Neurologie" class="urgence-image" />
+        <div class="category-content">
+          <h3>Neurologie</h3>
+          <p>Symptômes d’AVC ou troubles neurologiques : contactez un service d’urgence.</p>
+        </div>
+      </div>
     </div>
-    <div class="urgence-category">
-      <img src="assets/images/neurologie.jpg" alt="Urgence Neurologie" class="urgence-image">
-      <h4>Neurologie</h4>
-      <p>Pour des symptômes de AVC ou des troubles neurologiques, contactez un service d'urgence neurologique.</p>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="urgence-contact">
+    <h2>Contact d’Urgence</h2>
+    <div class="contact-grid">
+      <button class="btn btn-primary" (click)="callHospital()" aria-label="Appeler l’hôpital">
+        <i class="fas fa-phone-alt"></i> 95 654 123
+      </button>
+      <a href="mailto:contact@hopital-general.fr" class="btn btn-secondary" aria-label="Envoyer un email">
+        <i class="fas fa-envelope"></i> contacthopital-general.fr
+      </a>
     </div>
-  </div>
-
-
-
-  <!-- Informations supplémentaires -->
-  <div class="urgence-contact">
-    <h3>Contactez-nous en urgence :</h3>
-    <p><i class="fas fa-phone-alt"></i> <strong>95 654 123</strong></p>
-    <p><i class="fas fa-envelope"></i> <strong>contacthopital-general.fr</strong></p>
-  </div>
+  </section>
 </div>
