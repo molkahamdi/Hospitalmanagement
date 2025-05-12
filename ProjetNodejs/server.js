@@ -4,9 +4,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const authRouters = require('./routes/auth.routes');
 const userRouters = require('./routes/user.routes');
-const prescriptionRoutes = require('./routes/prescription.routes'); 
 const app = express();// Chemin vers votre fichier
-app.use('/api/prescriptions', prescriptionRoutes);
 
 
 // Middleware
