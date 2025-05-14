@@ -17,6 +17,9 @@ app.use('/api/user', userRouters);
 const emailRoutes = require("./routes/email.routes");
 app.use('/api/email', emailRoutes);
 
+const paymentRoutes = require('./routes/payment.routes');
+app.use('/api/payment', paymentRoutes);
+
 
 
 mongoose.connect(process.env.MONGO_URI)
