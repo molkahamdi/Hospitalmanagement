@@ -5,6 +5,21 @@
   <!-- Main Heading -->
   <h1>Paiement de la visite</h1>
 
+ <!-- Stripe Card Form -->
+<form
+  id="stripe-form"
+  *ngIf="showStripeForm && clientSecret"
+  (submit)="confirmPayment(); $event.preventDefault()"
+>
+  <div id="card-element" class="payment-input"></div>
+  <button class="btn btn-success mt-3" type="submit" [disabled]="loading">
+    
+  </button>
+</form>
+
+
+
+
   <!-- Payment Card -->
   <div class="payment-card" *ngIf="!paymentSuccess">
     <div class="card-header">

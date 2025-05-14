@@ -9,6 +9,16 @@
   font-family: "Poppins", sans-serif;
 }
 
+#card-element {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  margin-top: 10px;
+}
+
+
+
 /* Logo styling */
 .logo {
   display: block;

@@ -20,6 +20,8 @@ import {ViewDoctorComponent} from './admin/doctors/view-doctor/view-doctor.compo
 import { OrdonnanceComponent } from './ordonnance/ordonnance.component';
 import { ListeOrdonnancesComponent } from './liste-ordonnances/liste-ordonnances.component';
 import { PaymentComponent } from './payment/payment.component';
+import { PaymentSuccessComponent } from './pages/payment-success/payment-success.component';
+import { PaymentCancelComponent } from './pages/payment-cancel/payment-cancel.component';
 
 export const routes: Routes = [
     { path:'', component:HomeComponent },
@@ -57,6 +59,8 @@ export const routes: Routes = [
       },
       { path: 'liste-ordonnances', component: ListeOrdonnancesComponent},
       { path: 'payment', component: PaymentComponent},
+      { path: 'payment-success', component: PaymentSuccessComponent },
+      { path: 'payment-cancel', component: PaymentCancelComponent },
 
 
 
